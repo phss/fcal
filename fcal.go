@@ -1,8 +1,11 @@
 package main
 
-import "fmt"
-import "time"
-import "bytes"
+import (
+	"bytes"
+	"fmt"
+	"github.com/phss/fcal/calendar"
+	"time"
+)
 
 func startOfMonth(t time.Time) time.Time {
 	return t.AddDate(0, 0, 1-t.Day())
@@ -41,6 +44,7 @@ func breakIntoWeeks(dates []time.Time) [][]time.Time {
 }
 
 func main() {
+	fmt.Println(calendar.Thing())
 	now := time.Now()
 	header := fmt.Sprintf("%s %d", now.Month(), now.Year())
 	fmt.Printf("%*s\n", 10+len(header)/2, header)
