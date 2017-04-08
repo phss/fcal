@@ -8,9 +8,10 @@ import (
 )
 
 type cal struct {
-	month string
-	year  int
-	weeks [][]int
+	month        string
+	year         int
+	weekDayStart int
+	lastDay      int
 }
 
 func startOfMonth(t time.Time) time.Time {
@@ -54,20 +55,23 @@ func printCalendar(c cal) {
 	fmt.Printf("%*s\n", 10+len(header)/2, header)
 	fmt.Println("Su Mo Tu We Th Fr Sa")
 
-	for j, week := range c.weeks {
-		var buffer bytes.Buffer
+	var buffer bytes.Buffer
+	weekDay := 0
 
-		if j == 0 {
-			for i := 0; i <= 6-len(week); i++ {
-				buffer.WriteString("   ")
-			}
+	for i := 0; i < c.weekDayStart; i++ {
+		buffer.WriteString("   ")
+		weekDay++
+	}
+
+	for day := 1; day <= c.lastDay; day++ {
+		buffer.WriteString(fmt.Sprintf("%2d ", day))
+		weekDay++
+
+		if weekDay == 7 || day == c.lastDay {
+			weekDay = 0
+			fmt.Println(buffer.String())
+			buffer.Reset()
 		}
-
-		for _, day := range week {
-			buffer.WriteString(fmt.Sprintf("%2d ", day))
-		}
-
-		fmt.Println(buffer.String())
 	}
 }
 
@@ -96,16 +100,7 @@ func main() {
 		fmt.Println(buffer.String())
 	}
 
-	c := cal{year: 2017,
-		month: "April",
-		weeks: [][]int{
-			[]int{1},
-			[]int{2, 3, 4, 5, 6, 7, 8},
-			[]int{9, 10, 11, 12, 13, 14, 15},
-			[]int{16, 17, 18, 19, 20, 21, 22},
-			[]int{23, 24, 25, 26, 27, 28, 29},
-			[]int{30},
-		},
-	}
+	c := cal{year: 2017, month: "April", weekDayStart: 6, lastDay: 30}
+
 	printCalendar(c)
 }
