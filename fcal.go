@@ -15,7 +15,7 @@ func printCalendar(c calendar.CalendarMonth) {
 	var buffer bytes.Buffer
 	weekDay := 0
 
-	for i := 0; i < c.WeekDayStart; i++ {
+	for i := 0; i < int(c.WeekDayStart); i++ {
 		buffer.WriteString("   ")
 		weekDay++
 	}

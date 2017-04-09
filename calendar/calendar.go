@@ -7,12 +7,12 @@ import (
 type CalendarMonth struct {
 	Month        time.Month
 	Year         int
-	WeekDayStart int
+	WeekDayStart time.Weekday
 	LastDay      int
 }
 
 func CalendarFrom(date time.Time) CalendarMonth {
-	start := int(startOfMonth(date).Weekday())
+	start := startOfMonth(date).Weekday()
 	return CalendarMonth{Year: date.Year(), Month: date.Month(), WeekDayStart: start, LastDay: endOfMonth(date).Day()}
 }
 

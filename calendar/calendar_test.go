@@ -11,11 +11,11 @@ var testCases = []struct {
 }{
 	{
 		date:     time.Date(2017, 4, 10, 23, 0, 0, 0, time.UTC),
-		expected: CalendarMonth{Month: time.April, Year: 2017, WeekDayStart: 6, LastDay: 30},
+		expected: CalendarMonth{Month: time.April, Year: 2017, WeekDayStart: time.Saturday, LastDay: 30},
 	},
 	{
 		date:     time.Date(2016, 2, 1, 12, 12, 12, 12, time.UTC),
-		expected: CalendarMonth{Month: time.February, Year: 2016, WeekDayStart: 1, LastDay: 29},
+		expected: CalendarMonth{Month: time.February, Year: 2016, WeekDayStart: time.Monday, LastDay: 29},
 	},
 }
 
