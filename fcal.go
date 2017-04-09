@@ -33,6 +33,6 @@ func printCalendar(c calendar.CalendarMonth) {
 }
 
 func main() {
-	c := calendar.CalendarFrom(time.Now())
+	c := calendar.CalendarMonthFrom(time.Now())
 	printCalendar(c)
 }

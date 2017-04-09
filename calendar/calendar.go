@@ -11,15 +11,18 @@ type CalendarMonth struct {
 	LastDay      int
 }
 
-func CalendarFrom(date time.Time) CalendarMonth {
-	start := startOfMonth(date).Weekday()
-	return CalendarMonth{Year: date.Year(), Month: date.Month(), WeekDayStart: start, LastDay: endOfMonth(date).Day()}
+func CalendarMonthFrom(date time.Time) CalendarMonth {
+	return CalendarMonth{
+		Year:         date.Year(),
+		Month:        date.Month(),
+		WeekDayStart: startOfMonth(date).Weekday(),
+		LastDay:      endOfMonth(date).Day()}
 }
 
-func startOfMonth(t time.Time) time.Time {
-	return t.AddDate(0, 0, 1-t.Day())
+func startOfMonth(date time.Time) time.Time {
+	return date.AddDate(0, 0, 1-date.Day())
 }
 
-func endOfMonth(t time.Time) time.Time {
-	return startOfMonth(t).AddDate(0, 1, -1)
+func endOfMonth(date time.Time) time.Time {
+	return startOfMonth(date).AddDate(0, 1, -1)
 }
