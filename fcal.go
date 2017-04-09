@@ -76,7 +76,7 @@ func printCalendar(c cal) {
 }
 
 func main() {
-	fmt.Println(calendar.Thing())
+	fmt.Println(calendar.CalendarFrom(time.Now()))
 	now := time.Now()
 	header := fmt.Sprintf("%s %d", now.Month(), now.Year())
 	fmt.Printf("%*s\n", 10+len(header)/2, header)
