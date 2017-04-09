@@ -3,12 +3,16 @@ package calendar
 import (
 	"bytes"
 	"fmt"
+	"github.com/fatih/color"
 )
+
+var titleStyle *color.Color = color.New(color.FgYellow)
+var weekDaysStyle *color.Color = color.New(color.FgCyan)
 
 func PrintMonth(c CalendarMonth) {
 	header := fmt.Sprintf("%s %d", c.Month, c.Year)
-	fmt.Printf("%*s\n", 10+len(header)/2, header)
-	fmt.Println("Su Mo Tu We Th Fr Sa")
+	titleStyle.Printf("%*s\n", 10+len(header)/2, header)
+	weekDaysStyle.Println("Su Mo Tu We Th Fr Sa")
 
 	var buffer bytes.Buffer
 	weekDay := 0
