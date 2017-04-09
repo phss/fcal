@@ -5,15 +5,15 @@ import (
 )
 
 type CalendarMonth struct {
-	month        string
-	year         int
-	weekDayStart int
-	lastDay      int
+	Month        string
+	Year         int
+	WeekDayStart int
+	LastDay      int
 }
 
 func CalendarFrom(date time.Time) CalendarMonth {
 	start := int(startOfMonth(date).Weekday())
-	return CalendarMonth{year: date.Year(), month: date.Month().String(), weekDayStart: start, lastDay: endOfMonth(date).Day()}
+	return CalendarMonth{Year: date.Year(), Month: date.Month().String(), WeekDayStart: start, LastDay: endOfMonth(date).Day()}
 }
 
 func startOfMonth(t time.Time) time.Time {
