@@ -7,7 +7,9 @@ import (
 )
 
 var titleStyle *color.Color = color.New(color.FgYellow)
-var weekDaysStyle *color.Color = color.New(color.FgCyan)
+var weekDaysStyle *color.Color = color.New(color.FgBlue)
+var weekendStyle *color.Color = color.New(color.FgCyan)
+var normalStyle *color.Color = color.New(color.Reset)
 
 func PrintMonth(c CalendarMonth) {
 	header := fmt.Sprintf("%s %d", c.Month, c.Year)
@@ -23,7 +25,11 @@ func PrintMonth(c CalendarMonth) {
 	}
 
 	for day := 1; day <= c.LastDay; day++ {
-		buffer.WriteString(fmt.Sprintf("%2d ", day))
+		format := normalStyle
+		if weekDay == 0 || weekDay == 6 {
+			format = weekendStyle
+		}
+		buffer.WriteString(format.Sprintf("%2d ", day))
 		weekDay++
 
 		if weekDay == 7 || day == c.LastDay {
