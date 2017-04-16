@@ -9,6 +9,7 @@ type CalendarMonth struct {
 	Year         int
 	WeekDayStart time.Weekday
 	LastDay      int
+	MarkedDays   []int
 }
 
 func CalendarMonthFrom(date time.Time) CalendarMonth {
@@ -16,7 +17,8 @@ func CalendarMonthFrom(date time.Time) CalendarMonth {
 		Year:         date.Year(),
 		Month:        date.Month(),
 		WeekDayStart: startOfMonth(date).Weekday(),
-		LastDay:      endOfMonth(date).Day()}
+		LastDay:      endOfMonth(date).Day(),
+		MarkedDays:   []int{date.Day()}}
 }
 
 func startOfMonth(date time.Time) time.Time {
