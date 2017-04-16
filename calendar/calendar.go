@@ -12,6 +12,15 @@ type CalendarMonth struct {
 	MarkedDays   []int
 }
 
+func (c *CalendarMonth) IsMarkedDay(day int) bool {
+	for _, markedDay := range c.MarkedDays {
+		if markedDay == day {
+			return true
+		}
+	}
+	return false
+}
+
 func CalendarMonthFrom(date time.Time) CalendarMonth {
 	return CalendarMonth{
 		Year:         date.Year(),

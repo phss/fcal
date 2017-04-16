@@ -47,3 +47,19 @@ func TestCalendarMonth(t *testing.T) {
 		}
 	}
 }
+
+func TestIsMarkedDay(t *testing.T) {
+	c := CalendarMonth{
+		Month:        time.April,
+		Year:         2017,
+		WeekDayStart: time.Sunday,
+		LastDay:      30,
+		MarkedDays:   []int{16}}
+
+	if c.IsMarkedDay(10) {
+		t.Fatalf("10th of April is not a marked day on %v", c)
+	}
+	if !c.IsMarkedDay(16) {
+		t.Fatalf("16th of April is a marked day on %v", c)
+	}
+}
