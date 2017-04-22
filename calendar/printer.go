@@ -12,7 +12,7 @@ var weekendStyle *color.Color = color.New(color.FgCyan)
 var normalStyle *color.Color = color.New(color.Reset)
 var markedStyle *color.Color = color.New(color.FgGreen)
 
-func PrintMonth(c CalendarMonth) {
+func PrintMonth(c CalendarMonth, highlightDay bool) {
 	header := fmt.Sprintf("%s %d", c.Month, c.Year)
 	titleStyle.Printf("%*s\n", 10+len(header)/2, header)
 	weekDaysStyle.Println("Su Mo Tu We Th Fr Sa")
@@ -30,7 +30,7 @@ func PrintMonth(c CalendarMonth) {
 		if isWeekend(weekDay) {
 			format = weekendStyle
 		}
-		if c.IsMarkedDay(day) {
+		if c.IsMarkedDay(day) && highlightDay {
 			format = markedStyle
 		}
 

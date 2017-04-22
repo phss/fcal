@@ -9,13 +9,14 @@ import (
 )
 
 func main() {
-	date := parseOptions()
+	date, highlightDay := parseOptions()
 	c := calendar.CalendarMonthFrom(date)
-	calendar.PrintMonth(c)
+	calendar.PrintMonth(c, highlightDay)
 }
 
-func parseOptions() time.Time {
+func parseOptions() (time.Time, bool) {
 	format := "2006-01-02"
+	highlightDay := true
 
 	var dateStr string
 	flag.StringVar(&dateStr, "d", time.Now().Format(format), "ISO date of the day or month to be displayed")
@@ -23,6 +24,7 @@ func parseOptions() time.Time {
 
 	if strings.Count(dateStr, "-") == 1 {
 		format = "2006-01"
+		highlightDay = false
 	}
 
 	date, err := time.Parse(format, dateStr)
@@ -31,5 +33,5 @@ func parseOptions() time.Time {
 		log.Fatal(err)
 	}
 
-	return date
+	return date, highlightDay
 }
