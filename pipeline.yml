@@ -5,7 +5,7 @@ jobs:
   plan:
   - get: git_repo_fcal
   - task: test
-    file: git_repo_local/ci/test_task.yml
+    file: git_repo_fcal/ci/test_task.yml
 
 resources:
 
