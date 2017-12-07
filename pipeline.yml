@@ -1,0 +1,16 @@
+jobs:
+- name: fcal_with_external_task
+  public: true
+  serial: true
+  plan:
+  - get: git_repo_fcal
+  - task: test
+    file: git_repo_local/ci/test_task.yml
+
+resources:
+
+- name: git_repo_fcal
+  type: git
+  source:
+    branch: master
+    uri: https://github.com/phss/fcal.git

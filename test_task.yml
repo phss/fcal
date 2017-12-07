@@ -1,0 +1,26 @@
+---
+platform: linux
+params:
+  GOARCH: amd64
+  GOOS: linux
+run:
+  path: sh
+  args:
+  - -ec
+  - |
+    mkdir -p $GOPATH/src/github.com/phss/fcal
+    cp -R git_repo_fcal/* $GOPATH/src/github.com/phss/fcal
+    cd $GOPATH/src/github.com/phss/fcal
+    ls -la
+    go get github.com/fatih/color
+    go get github.com/smartystreets/assertions/should
+    go get github.com/smartystreets/goconvey/convey
+    go test ./... -v
+inputs:
+- name: git_repo_fcal
+  path: ""
+
+image_resource:
+  type: docker-image
+  source:
+    repository: lushdigital/docker-golang-dep
